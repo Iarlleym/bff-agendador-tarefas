@@ -18,6 +18,6 @@ public class TarefasDTORequest {
     private String descricao;
     //LocaDate trabalha com data - LocalDateTime trabalha com data e hora.
     @JsonFormat (shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy HH:mm:ss")
-    private LocalDateTime dataCriacao;
+    private LocalDateTime dataEvento;
 
 }
