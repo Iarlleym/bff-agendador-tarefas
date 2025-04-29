@@ -33,7 +33,7 @@ public class UsuarioController {
     @Operation(summary = "Salvar usuário", description = "Cria e salva um novo usuário.")
     //Anotação responsalvel pelos status code dos verbos html.
     @ApiResponse (responseCode = "200", description = "Usuário salvo com sucesso.")
-    @ApiResponse (responseCode = "400", description = "Usuário já cadastrado.")
+    @ApiResponse (responseCode = "409", description = "Usuário já cadastrado.")
     @ApiResponse (responseCode = "500", description = "Erro de servidor.")
     public ResponseEntity<UsuarioDTOResponse> salvaUsuario (@RequestBody UsuarioDTORequest usuarioDTORequest){
        return ResponseEntity.ok(usuarioService.salvaUsuario(usuarioDTORequest));
@@ -57,7 +57,8 @@ public class UsuarioController {
     @Operation(summary = "Buscar dados de usuário por e-mail.", description = "Buscar dados do usuário.")
     //Anotação responsalvel pelos status code dos verbos html.
     @ApiResponse (responseCode = "200", description = "Usuário encontrado.")
-    @ApiResponse (responseCode = "404", description = "Usuário não encontrado.")
+    @ApiResponse (responseCode = "401", description = "Credencias Inválidas.")
+    @ApiResponse (responseCode = "403", description = "Usuário não encontrado.")
     @ApiResponse (responseCode = "500", description = "Erro de servidor.")
     public ResponseEntity<UsuarioDTOResponse> buscaUsuarioPorEmail (@RequestParam ("email") String email, @RequestHeader ("Authorization") String token) {
         return ResponseEntity.ok(usuarioService.buscarUsuarioPorEmail(email, token));
@@ -69,7 +70,8 @@ public class UsuarioController {
     @Operation(summary = "Deletar usuário por e-mail.", description = "Deleta usuário por e-mail.")
     //Anotação responsalvel pelos status code dos verbos html.
     @ApiResponse (responseCode = "200", description = "Usuário deletado com sucesso.")
-    @ApiResponse (responseCode = "404", description = "Usuário não encontrado.")
+    @ApiResponse (responseCode = "401", description = "Credencias Inválidas.")
+    @ApiResponse (responseCode = "403", description = "Usuário não encontrado.")
     @ApiResponse (responseCode = "500", description = "Erro de servidor.")
     public ResponseEntity <Void> deletaUsuarioPorEmail (@PathVariable String email, @RequestHeader ("Authorization") String token) { //OBS o nome dentro das chaves {/email} tem que ser igual ao nome da variável.
         usuarioService.deletaUsuarioPorEmail(email, token);
@@ -82,7 +84,8 @@ public class UsuarioController {
     @Operation(summary = "Atualizar dados de usuário.", description = "Atualiza dados de usuário.")
     //Anotação responsalvel pelos status code dos verbos html.
     @ApiResponse (responseCode = "200", description = "Usuário atualizado com sucesso.")
-    @ApiResponse (responseCode = "404", description = "Usuário não encontrado.")
+    @ApiResponse (responseCode = "401", description = "Credencias Inválidas.")
+    @ApiResponse (responseCode = "403", description = "Usuário não encontrado.")
     @ApiResponse (responseCode = "500", description = "Erro de servidor.")
     public ResponseEntity<UsuarioDTOResponse>  atualizaDadosDoUsuario (@RequestBody UsuarioDTORequest usuarioDTORequest, @RequestHeader ("Authorization") String token) {
         return ResponseEntity.ok(usuarioService.atualizaDaddosUsuario(token, usuarioDTORequest));
@@ -94,7 +97,8 @@ public class UsuarioController {
     @Operation(summary = "Atualizar endereço do usuário.", description = "Atualiza dados de endereço do usuário.")
     //Anotação responsalvel pelos status code dos verbos html.
     @ApiResponse (responseCode = "200", description = "Endereço atualizado com sucesso.")
-    @ApiResponse (responseCode = "404", description = "Usuário não encontrado.")
+    @ApiResponse (responseCode = "401", description = "Credencias Inválidas.")
+    @ApiResponse (responseCode = "403", description = "Usuário não encontrado.")
     @ApiResponse (responseCode = "500", description = "Erro de servidor.")
     public  ResponseEntity<EnderecoDTOResponse> atualizaEndereco (@RequestBody EnderecoDTORequest enderecoDTORequest, @RequestParam ("id") Long id, @RequestHeader ("Authorization") String token) {
         return  ResponseEntity.ok(usuarioService.atualizaEndereco(id, enderecoDTORequest, token));
@@ -106,7 +110,8 @@ public class UsuarioController {
     @Operation(summary = "Atualizar telefone do usuário.", description = "Atualiza dados de telefone do usuário.")
     //Anotação responsalvel pelos status code dos verbos html.
     @ApiResponse (responseCode = "200", description = "Telefone atualizado com sucesso.")
-    @ApiResponse (responseCode = "404", description = "Usuário não encontrado.")
+    @ApiResponse (responseCode = "401", description = "Credencias Inválidas.")
+    @ApiResponse (responseCode = "403", description = "Usuário não encontrado.")
     @ApiResponse (responseCode = "500", description = "Erro de servidor.")
     public  ResponseEntity<TelefoneDTOResponse> atualizaTelefone (@RequestBody TelefoneDTORequest telefoneDTORequest, @RequestParam ("id") Long id, @RequestHeader ("Authorization") String token) {
         return  ResponseEntity.ok(usuarioService.atualizaTelefone(id, telefoneDTORequest, token));
@@ -118,7 +123,8 @@ public class UsuarioController {
     @Operation(summary = "Adiciona endereço ao usuário.", description = "Adiciona um novo endereço ao usuário.")
     //Anotação responsalvel pelos status code dos verbos html.
     @ApiResponse (responseCode = "200", description = "Endereço adicionado com sucesso.")
-    @ApiResponse (responseCode = "404", description = "Usuário não encontrado.")
+    @ApiResponse (responseCode = "401", description = "Credencias Inválidas.")
+    @ApiResponse (responseCode = "403", description = "Usuário não encontrado.")
     @ApiResponse (responseCode = "500", description = "Erro de servidor.")
     public ResponseEntity<EnderecoDTOResponse> cadastraEndereco (@RequestBody EnderecoDTORequest enderecoDTORequest, @RequestHeader ("Authorization") String token) {
         return  ResponseEntity.ok(usuarioService.cadastraEndereco(token, enderecoDTORequest));
@@ -130,7 +136,8 @@ public class UsuarioController {
     @Operation(summary = "Adiciona telefone ao usuário.", description = "Adiciona um novo telefone ao usuário.")
     //Anotação responsalvel pelos status code dos verbos html.
     @ApiResponse (responseCode = "200", description = "Telefone adicionado com sucesso.")
-    @ApiResponse (responseCode = "404", description = "Usuário não encontrado.")
+    @ApiResponse (responseCode = "401", description = "Credencias Inválidas.")
+    @ApiResponse (responseCode = "403", description = "Usuário não encontrado.")
     @ApiResponse (responseCode = "500", description = "Erro de servidor.")
     public ResponseEntity<TelefoneDTOResponse> cadastraTelefone (@RequestBody TelefoneDTORequest telefoneDTORequest, @RequestHeader ("Authorization") String token) {
         return  ResponseEntity.ok(usuarioService.cadastraTelefone(token, telefoneDTORequest));
