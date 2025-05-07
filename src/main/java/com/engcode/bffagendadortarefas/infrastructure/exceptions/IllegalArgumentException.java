@@ -1,13 +1,13 @@
 package com.engcode.bffagendadortarefas.infrastructure.exceptions;
 
-public class IllegalArgumentExcepition extends RuntimeException {
+public class IllegalArgumentException extends RuntimeException {
 
-    public IllegalArgumentExcepition(String menssagem) {
+    public IllegalArgumentException(String menssagem) {
 
         super(menssagem);
     }
 
-    public IllegalArgumentExcepition(String menssagem, Throwable throwable) {
+    public IllegalArgumentException(String menssagem, Throwable throwable) {
 
         super(menssagem, throwable);
     }

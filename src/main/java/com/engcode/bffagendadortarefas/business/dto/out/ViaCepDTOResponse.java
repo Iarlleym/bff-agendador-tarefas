@@ -7,7 +7,7 @@ import lombok.*;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class ViaCepDTO {
+public class ViaCepDTOResponse {
 
         public String cep;
         public String logradouro;

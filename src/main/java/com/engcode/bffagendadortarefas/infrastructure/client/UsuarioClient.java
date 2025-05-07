@@ -8,7 +8,9 @@ import com.engcode.bffagendadortarefas.business.dto.in.UsuarioDTORequest;
 import com.engcode.bffagendadortarefas.business.dto.out.EnderecoDTOResponse;
 import com.engcode.bffagendadortarefas.business.dto.out.TelefoneDTOResponse;
 import com.engcode.bffagendadortarefas.business.dto.out.UsuarioDTOResponse;
+import com.engcode.bffagendadortarefas.business.dto.out.ViaCepDTOResponse;
 import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 //Coloca o nome e a url que no caso vai ser uma variavél no aplicationProperties
@@ -50,5 +52,10 @@ public interface UsuarioClient {
     //Metodo para adicionar telefone
     @PostMapping ("/usuario/telefone")
     TelefoneDTOResponse cadastraTelefone (@RequestBody TelefoneDTORequest telefoneDTORequest, @RequestHeader ("Authorization") String token);
+
+    //Buscar informações do cep via api externa.
+    //Esse cep ele pode ser recebido via parametro ou do jeito que está direto no end point.
+    @GetMapping ("/usuario/endereco/{cep}")
+    ViaCepDTOResponse buscarDadosCep (@PathVariable ("cep") String cep);
 
 }
