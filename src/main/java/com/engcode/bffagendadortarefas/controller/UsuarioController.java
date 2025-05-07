@@ -9,11 +9,13 @@ import com.engcode.bffagendadortarefas.business.dto.in.UsuarioDTORequest;
 import com.engcode.bffagendadortarefas.business.dto.out.EnderecoDTOResponse;
 import com.engcode.bffagendadortarefas.business.dto.out.TelefoneDTOResponse;
 import com.engcode.bffagendadortarefas.business.dto.out.UsuarioDTOResponse;
+import com.engcode.bffagendadortarefas.business.dto.out.ViaCepDTOResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.ErrorResponse;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -141,6 +143,18 @@ public class UsuarioController {
     @ApiResponse (responseCode = "500", description = "Erro de servidor.")
     public ResponseEntity<TelefoneDTOResponse> cadastraTelefone (@RequestBody TelefoneDTORequest telefoneDTORequest, @RequestHeader ("Authorization") String token) {
         return  ResponseEntity.ok(usuarioService.cadastraTelefone(token, telefoneDTORequest));
+    }
+
+    //Metodo para buscar dados do cep.
+    @GetMapping ("/endereco/{cep}")
+    //Anotação do swagger da uma descrição do metodo.
+    @Operation(summary = "Busca endereço pelo cep.", description = "Busca dados de endereço pelo cep.")
+    //Anotação responsalvel pelos status code dos verbos html.
+    @ApiResponse (responseCode = "200", description = "Dados de endereço retornados com sucesso")
+    @ApiResponse (responseCode = "400", description = "CEP Inválido.")
+    @ApiResponse (responseCode = "500", description = "Erro de servidor.")
+    public ResponseEntity<ViaCepDTOResponse> buscarEndereco (@PathVariable ("cep") String cep ) {
+        return  ResponseEntity.ok(usuarioService.buscarEnderecoPorCep(cep));
     }
 
 }
