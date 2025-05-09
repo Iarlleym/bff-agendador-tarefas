@@ -1,5 +1,6 @@
 package com.engcode.bffagendadortarefas.infrastructure.client.confg;
 
+
 import com.engcode.bffagendadortarefas.infrastructure.exceptions.*;
 import com.engcode.bffagendadortarefas.infrastructure.exceptions.IllegalArgumentException;
 import feign.Response;
