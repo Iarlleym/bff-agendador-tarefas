@@ -17,6 +17,7 @@ public class BffAgendadorTarefasApplication {
 
 		SpringApplication.run(BffAgendadorTarefasApplication.class, args);
 
+
 	}
 
 }
